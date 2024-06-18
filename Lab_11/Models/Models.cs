@@ -29,9 +29,17 @@ public class Models
         public string RefreshToken { get; set; } = null!;
     }
 
+    public class RegisterRequestModel
+    {
+        [Required] [EmailAddress] public string UserName { get; set; } = null!;
+
+        [Required] public string Password { get; set; } = null!;
+    }
+
     public class User
     {
         public string Name { get; set; } = null!;
         public string Password { get; set; } = null!;
     }
+
 }

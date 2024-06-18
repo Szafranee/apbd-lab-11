@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿/*
+using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using System.Text;
@@ -33,7 +34,7 @@ using Microsoft.IdentityModel.Tokens;
  * - Tworzymy nowy rekord dla uzytkownika w bazie ktory bedzie zawieral jego username oraz hash ktory wygenerowalismy w ramach hasla
  *
  * 4. Zabezpiecznie jednej koncowki
- */
+ #1#
 
 namespace Lab_11.Controllers
 {
@@ -157,11 +158,11 @@ namespace Lab_11.Controllers
             return Ok(Convert.ToHexString(hash));
         }
 
-        [HttpPost("register")]
-        public IActionResult RegisterUser(Models.LoginRequestModel loginRequestModel)
-        {
-
-        }
+        // [HttpPost("register")]
+        // public IActionResult RegisterUser(Models.LoginRequestModel loginRequestModel)
+        // {
+        //
+        // }
 
         [HttpGet("hash-password-with-salt/{password}")]
         public IActionResult HashPasswordWithSalt(string password)
@@ -179,3 +180,4 @@ namespace Lab_11.Controllers
 
     }
 }
+*/

@@ -1,11 +1,24 @@
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Lab_11.Extensions;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
+using System.Reflection.PortableExecutable;
+using System.Text;
+using Lab_11.Contexts;
+using Lab_11.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddDbContext<DatabaseContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+});
+
 
 // === Dodaj serwis odpowiedzialny za autoryzacje tokenu
 builder.Services.AddAuthentication().AddJwtBearer(opt =>
@@ -16,6 +29,7 @@ builder.Services.AddAuthentication().AddJwtBearer(opt =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
+
         ValidIssuer = builder.Configuration["JWT:Issuer"],
         ValidAudience = builder.Configuration["JWT:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]!))

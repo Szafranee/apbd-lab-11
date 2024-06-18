@@ -2,7 +2,7 @@
 
 namespace Lab_11.Extensions
 {
-    public static class ExceptionMiddlewareExtension
+    public static class ExepctionMiddlewareExternsion
     {
         public static void ConfigureExceptionHandler(this IApplicationBuilder appBuilder)
         {
